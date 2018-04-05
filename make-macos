@@ -1,0 +1,62 @@
+CXX?=g++
+CXXFLAGS?=
+
+LINK:=
+
+SRC_DIR=src
+OBJ_DIR?=build
+
+BIN:=skeltn~
+
+SRC=\
+Main.cpp\
+Output.cpp\
+Help.cpp\
+Init.cpp\
+FileSystem.cpp\
+MSVCDep.cpp\
+Build.cpp\
+Rebuilder.cpp\
+Config.cpp\
+CompileCall.cpp\
+Project.cpp\
+CommandLine.cpp\
+PathManage.cpp\
+PathCommand.cpp\
+CompileMSVC.cpp\
+Platform.cpp\
+CompileGCC.cpp\
+GCCDep.cpp\
+Util.cpp\
+MakeGenerator.cpp
+
+CXXFLAGS:=$(CXXFLAGS) -std=c++11 -Wall
+
+OBJ:=$(addsuffix .o,$(SRC))
+
+SRC:=$(addprefix $(SRC_DIR)/,$(SRC))
+OBJ:=$(addprefix $(OBJ_DIR)/,$(OBJ))
+
+space:=
+space+=
+mkpath=rm -rf $(1) && mkdir -p $(1) && rm -rf $(1)
+
+.PHONY: all clean
+
+all: $(BIN)
+
+$(OBJ_DIR)/%.cpp.o: $(SRC_DIR)/%.cpp
+	@$(call mkpath,$@)
+	@printf "Compile [$< -> $@]\n"
+	@$(CXX) -MD -c $< -o $@ $(CXXFLAGS)
+
+$(BIN): $(OBJ)
+	@printf "Link\n| $(subst $(space),\n| ,$^)\n> $@\n"
+	@$(CXX) -o $@ $^ $(CXXFLAGS) $(addprefix -l,$(LINK))
+
+clean:
+	@printf "Clean [$(BIN)]\nClean [$(OBJ_DIR)]\n"
+	@rm -f $(BIN)
+	@rm -rf $(OBJ_DIR)
+
+-include $(OBJ:.o=.d)

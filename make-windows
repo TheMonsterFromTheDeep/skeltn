@@ -1,0 +1,83 @@
+skeltn~.exe: build/Main.cpp.obj build/Output.cpp.obj build/Help.cpp.obj build/Init.cpp.obj build/FileSystem.cpp.obj build/MSVCDep.cpp.obj build/Build.cpp.obj build/Rebuilder.cpp.obj build/Config.cpp.obj build/CompileCall.cpp.obj build/Project.cpp.obj build/CommandLine.cpp.obj build/PathManage.cpp.obj build/PathCommand.cpp.obj build/CompileMSVC.cpp.obj build/Platform.cpp.obj build/CompileGCC.cpp.obj build/GCCDep.cpp.obj build/Util.cpp.obj build/MakeGenerator.cpp.obj 
+	link /nologo build/Main.cpp.obj build/Output.cpp.obj build/Help.cpp.obj build/Init.cpp.obj build/FileSystem.cpp.obj build/MSVCDep.cpp.obj build/Build.cpp.obj build/Rebuilder.cpp.obj build/Config.cpp.obj build/CompileCall.cpp.obj build/Project.cpp.obj build/CommandLine.cpp.obj build/PathManage.cpp.obj build/PathCommand.cpp.obj build/CompileMSVC.cpp.obj build/Platform.cpp.obj build/CompileGCC.cpp.obj build/GCCDep.cpp.obj build/Util.cpp.obj build/MakeGenerator.cpp.obj /out:skeltn~.exe
+
+build/Main.cpp.obj: src/Main.cpp
+	if not exist build\Main.cpp.obj ( mkdir build\Main.cpp.obj && rmdir build\Main.cpp.obj )
+	cl /nologo /c /EHsc src/Main.cpp /Fobuild\Main.cpp.obj
+
+build/Output.cpp.obj: src/Output.cpp
+	if not exist build\Output.cpp.obj ( mkdir build\Output.cpp.obj && rmdir build\Output.cpp.obj )
+	cl /nologo /c /EHsc src/Output.cpp /Fobuild\Output.cpp.obj
+
+build/Help.cpp.obj: src/Help.cpp
+	if not exist build\Help.cpp.obj ( mkdir build\Help.cpp.obj && rmdir build\Help.cpp.obj )
+	cl /nologo /c /EHsc src/Help.cpp /Fobuild\Help.cpp.obj
+
+build/Init.cpp.obj: src/Init.cpp
+	if not exist build\Init.cpp.obj ( mkdir build\Init.cpp.obj && rmdir build\Init.cpp.obj )
+	cl /nologo /c /EHsc src/Init.cpp /Fobuild\Init.cpp.obj
+
+build/FileSystem.cpp.obj: src/FileSystem.cpp
+	if not exist build\FileSystem.cpp.obj ( mkdir build\FileSystem.cpp.obj && rmdir build\FileSystem.cpp.obj )
+	cl /nologo /c /EHsc src/FileSystem.cpp /Fobuild\FileSystem.cpp.obj
+
+build/MSVCDep.cpp.obj: src/MSVCDep.cpp
+	if not exist build\MSVCDep.cpp.obj ( mkdir build\MSVCDep.cpp.obj && rmdir build\MSVCDep.cpp.obj )
+	cl /nologo /c /EHsc src/MSVCDep.cpp /Fobuild\MSVCDep.cpp.obj
+
+build/Build.cpp.obj: src/Build.cpp
+	if not exist build\Build.cpp.obj ( mkdir build\Build.cpp.obj && rmdir build\Build.cpp.obj )
+	cl /nologo /c /EHsc src/Build.cpp /Fobuild\Build.cpp.obj
+
+build/Rebuilder.cpp.obj: src/Rebuilder.cpp
+	if not exist build\Rebuilder.cpp.obj ( mkdir build\Rebuilder.cpp.obj && rmdir build\Rebuilder.cpp.obj )
+	cl /nologo /c /EHsc src/Rebuilder.cpp /Fobuild\Rebuilder.cpp.obj
+
+build/Config.cpp.obj: src/Config.cpp
+	if not exist build\Config.cpp.obj ( mkdir build\Config.cpp.obj && rmdir build\Config.cpp.obj )
+	cl /nologo /c /EHsc src/Config.cpp /Fobuild\Config.cpp.obj
+
+build/CompileCall.cpp.obj: src/CompileCall.cpp
+	if not exist build\CompileCall.cpp.obj ( mkdir build\CompileCall.cpp.obj && rmdir build\CompileCall.cpp.obj )
+	cl /nologo /c /EHsc src/CompileCall.cpp /Fobuild\CompileCall.cpp.obj
+
+build/Project.cpp.obj: src/Project.cpp
+	if not exist build\Project.cpp.obj ( mkdir build\Project.cpp.obj && rmdir build\Project.cpp.obj )
+	cl /nologo /c /EHsc src/Project.cpp /Fobuild\Project.cpp.obj
+
+build/CommandLine.cpp.obj: src/CommandLine.cpp
+	if not exist build\CommandLine.cpp.obj ( mkdir build\CommandLine.cpp.obj && rmdir build\CommandLine.cpp.obj )
+	cl /nologo /c /EHsc src/CommandLine.cpp /Fobuild\CommandLine.cpp.obj
+
+build/PathManage.cpp.obj: src/PathManage.cpp
+	if not exist build\PathManage.cpp.obj ( mkdir build\PathManage.cpp.obj && rmdir build\PathManage.cpp.obj )
+	cl /nologo /c /EHsc src/PathManage.cpp /Fobuild\PathManage.cpp.obj
+
+build/PathCommand.cpp.obj: src/PathCommand.cpp
+	if not exist build\PathCommand.cpp.obj ( mkdir build\PathCommand.cpp.obj && rmdir build\PathCommand.cpp.obj )
+	cl /nologo /c /EHsc src/PathCommand.cpp /Fobuild\PathCommand.cpp.obj
+
+build/CompileMSVC.cpp.obj: src/CompileMSVC.cpp
+	if not exist build\CompileMSVC.cpp.obj ( mkdir build\CompileMSVC.cpp.obj && rmdir build\CompileMSVC.cpp.obj )
+	cl /nologo /c /EHsc src/CompileMSVC.cpp /Fobuild\CompileMSVC.cpp.obj
+
+build/Platform.cpp.obj: src/Platform.cpp
+	if not exist build\Platform.cpp.obj ( mkdir build\Platform.cpp.obj && rmdir build\Platform.cpp.obj )
+	cl /nologo /c /EHsc src/Platform.cpp /Fobuild\Platform.cpp.obj
+
+build/CompileGCC.cpp.obj: src/CompileGCC.cpp
+	if not exist build\CompileGCC.cpp.obj ( mkdir build\CompileGCC.cpp.obj && rmdir build\CompileGCC.cpp.obj )
+	cl /nologo /c /EHsc src/CompileGCC.cpp /Fobuild\CompileGCC.cpp.obj
+
+build/GCCDep.cpp.obj: src/GCCDep.cpp
+	if not exist build\GCCDep.cpp.obj ( mkdir build\GCCDep.cpp.obj && rmdir build\GCCDep.cpp.obj )
+	cl /nologo /c /EHsc src/GCCDep.cpp /Fobuild\GCCDep.cpp.obj
+
+build/Util.cpp.obj: src/Util.cpp
+	if not exist build\Util.cpp.obj ( mkdir build\Util.cpp.obj && rmdir build\Util.cpp.obj )
+	cl /nologo /c /EHsc src/Util.cpp /Fobuild\Util.cpp.obj
+
+build/MakeGenerator.cpp.obj: src/MakeGenerator.cpp
+	if not exist build\MakeGenerator.cpp.obj ( mkdir build\MakeGenerator.cpp.obj && rmdir build\MakeGenerator.cpp.obj )
+	cl /nologo /c /EHsc src/MakeGenerator.cpp /Fobuild\MakeGenerator.cpp.obj
+

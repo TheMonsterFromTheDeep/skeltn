@@ -1,0 +1,11 @@
+# Ignore extra skeltn-generated stuff
+.skeltn-*
+
+# Ignore build directory
+build
+
+# Ignore executables
+skeltn~
+skeltn
+skeltn~.exe
+skeltn.exe

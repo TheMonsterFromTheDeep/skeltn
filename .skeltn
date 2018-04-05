@@ -1,0 +1,39 @@
+[Project]
+Name: Skeltn
+Version: 0
+SourceDirectory: src
+Binary: skeltn~
+
+[Source]
+Main.cpp
+Output.cpp
+Help.cpp
+Init.cpp
+FileSystem.cpp
+MSVCDep.cpp
+Build.cpp
+Rebuilder.cpp
+Config.cpp
+CompileCall.cpp
+Project.cpp
+CommandLine.cpp
+PathManage.cpp
+PathCommand.cpp
+CompileMSVC.cpp
+Platform.cpp
+CompileGCC.cpp
+GCCDep.cpp
+Util.cpp
+MakeGenerator.cpp
+# Put your source file names here
+
+[Library]
+# Put things to link against here
+# If you have platform-specific things to link against, put them under
+# a platform-specific section (i.e. [Library/Windows], [Library/Linux])
+
+# If everything went well you can now run 'skeltn build' and a hello world
+# application will build successfully!
+
+[Library/Windows]
+Shell32
