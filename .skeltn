@@ -24,6 +24,7 @@ Platform.cpp
 CompileGCC.cpp
 GCCDep.cpp
 Util.cpp
+Clean.cpp
 MakeGenerator.cpp
 # Put your source file names here
 

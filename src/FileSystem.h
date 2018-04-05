@@ -20,6 +20,7 @@ namespace Skeltn {
 		
 		bool createDirectory(const char*);
 		bool deleteFile(const char*);
+		bool deleteDirectory(const char*);
 		
 		std::string getHomeDirectory();
 		std::string getCurrentDirectory();

@@ -28,6 +28,7 @@ Platform.cpp\
 CompileGCC.cpp\
 GCCDep.cpp\
 Util.cpp\
+Clean.cpp\
 MakeGenerator.cpp
 
 CXXFLAGS:=$(CXXFLAGS) -std=c++11 -Wall

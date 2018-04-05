@@ -1,5 +1,5 @@
-skeltn~.exe: build/Main.cpp.obj build/Output.cpp.obj build/Help.cpp.obj build/Init.cpp.obj build/FileSystem.cpp.obj build/MSVCDep.cpp.obj build/Build.cpp.obj build/Rebuilder.cpp.obj build/Config.cpp.obj build/CompileCall.cpp.obj build/Project.cpp.obj build/CommandLine.cpp.obj build/PathManage.cpp.obj build/PathCommand.cpp.obj build/CompileMSVC.cpp.obj build/Platform.cpp.obj build/CompileGCC.cpp.obj build/GCCDep.cpp.obj build/Util.cpp.obj build/MakeGenerator.cpp.obj 
-	link /nologo build/Main.cpp.obj build/Output.cpp.obj build/Help.cpp.obj build/Init.cpp.obj build/FileSystem.cpp.obj build/MSVCDep.cpp.obj build/Build.cpp.obj build/Rebuilder.cpp.obj build/Config.cpp.obj build/CompileCall.cpp.obj build/Project.cpp.obj build/CommandLine.cpp.obj build/PathManage.cpp.obj build/PathCommand.cpp.obj build/CompileMSVC.cpp.obj build/Platform.cpp.obj build/CompileGCC.cpp.obj build/GCCDep.cpp.obj build/Util.cpp.obj build/MakeGenerator.cpp.obj /out:skeltn~.exe
+skeltn~.exe: build/Main.cpp.obj build/Output.cpp.obj build/Help.cpp.obj build/Init.cpp.obj build/FileSystem.cpp.obj build/MSVCDep.cpp.obj build/Build.cpp.obj build/Rebuilder.cpp.obj build/Config.cpp.obj build/CompileCall.cpp.obj build/Project.cpp.obj build/CommandLine.cpp.obj build/PathManage.cpp.obj build/PathCommand.cpp.obj build/CompileMSVC.cpp.obj build/Platform.cpp.obj build/CompileGCC.cpp.obj build/GCCDep.cpp.obj build/Util.cpp.obj build/Clean.cpp.obj build/MakeGenerator.cpp.obj 
+	link /nologo build/Main.cpp.obj build/Output.cpp.obj build/Help.cpp.obj build/Init.cpp.obj build/FileSystem.cpp.obj build/MSVCDep.cpp.obj build/Build.cpp.obj build/Rebuilder.cpp.obj build/Config.cpp.obj build/CompileCall.cpp.obj build/Project.cpp.obj build/CommandLine.cpp.obj build/PathManage.cpp.obj build/PathCommand.cpp.obj build/CompileMSVC.cpp.obj build/Platform.cpp.obj build/CompileGCC.cpp.obj build/GCCDep.cpp.obj build/Util.cpp.obj build/Clean.cpp.obj build/MakeGenerator.cpp.obj "Shell32".lib /out:skeltn~.exe
 
 build/Main.cpp.obj: src/Main.cpp
 	if not exist build\Main.cpp.obj ( mkdir build\Main.cpp.obj && rmdir build\Main.cpp.obj )
@@ -76,6 +76,10 @@ build/GCCDep.cpp.obj: src/GCCDep.cpp
 build/Util.cpp.obj: src/Util.cpp
 	if not exist build\Util.cpp.obj ( mkdir build\Util.cpp.obj && rmdir build\Util.cpp.obj )
 	cl /nologo /c /EHsc src/Util.cpp /Fobuild\Util.cpp.obj
+
+build/Clean.cpp.obj: src/Clean.cpp
+	if not exist build\Clean.cpp.obj ( mkdir build\Clean.cpp.obj && rmdir build\Clean.cpp.obj )
+	cl /nologo /c /EHsc src/Clean.cpp /Fobuild\Clean.cpp.obj
 
 build/MakeGenerator.cpp.obj: src/MakeGenerator.cpp
 	if not exist build\MakeGenerator.cpp.obj ( mkdir build\MakeGenerator.cpp.obj && rmdir build\MakeGenerator.cpp.obj )

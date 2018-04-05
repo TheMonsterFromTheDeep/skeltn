@@ -13,6 +13,7 @@
 	#include <sys/types.h>
 	#include <pwd.h>
 	#include <limits.h>
+	#include <ftw.h>
 #endif
 
 #include "Output.h"
@@ -137,5 +138,29 @@ noHomeDir:
 		exit(-40);
 #endif
 	}
+	
+#ifndef _WIN32
+	int deleteInnerFile(const char *fpath, const struct stat *sb, int typeflag, struct FTW *ftwbuf) {
+		return remove(fpath);
+	}
+	
+	bool deleteDirectory(const char *path) {
+		return !nftw(path, deleteInnerFile, 64, FTW_DEPTH | FTW_PHYS);
+	}
+#else
+	bool deleteDirectory(const char *path) {
+		SHFILEOPSTRUCT fileOp = {
+			NULL,
+			FO_DELETE,
+			path,
+			"",
+			FOF_NOCONFIRMATION | FOF_NOERRORUI | FOF_SILENT,
+			FALSE,
+			0,
+			""
+		};
+   `	return !SHFileOperation(&fileOp);
+	}
+#endif
 	
 } }

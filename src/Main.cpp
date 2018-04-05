@@ -38,6 +38,10 @@ int main(int argc, char **argv) {
 		Commands::link(argc, argv);
 		return 0;
 	}
+	if(cmd == "clean") {
+		Commands::clean(argc, argv);
+		return 0;
+	}
 	
 	Out << YellowText << "Unknown command '" << cmd << "'. Use 'skeltn help' for help.\n";
 	return 1;

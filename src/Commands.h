@@ -10,6 +10,7 @@ namespace Skeltn {
 		void autoConfigMSVC(int argc, char **argv);
 		void include(int argc, char **argv);
 		void link(int argc, char **argv);
+		void clean(int argc, char **argv);
 	}
 }
 
