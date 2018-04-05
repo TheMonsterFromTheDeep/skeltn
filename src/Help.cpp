@@ -14,8 +14,6 @@ namespace Skeltn { namespace Commands {
 		<<
 		"$ " << BlueText << "skeltn clean" << End << ": cleans the project directory.\n\n"
 		<<
-		"$ " << BlueText << "skeltn set compiler" << End << ": necessary setup on a Windows machine, unless you already have MSVC in your PATH, or are using the Visual Studio Command Prompt. Tells skeltn that the MSVC compiler, linker, and nmake reside inside the current directory.\n\n"
-		<<
 		"$ " << BlueText << "skeltn link add" << End << ": adds the current directory as a path the compiler will search for link libraries. Mostly necessary on Windows, which doesn't have the usual environment variables for include and link directories.\n\n"
 		<<
 		"$ " << BlueText << "skeltn include add" << End << ": adds the current directory as a path the compiler will search for include directories. Mostly necessary on Windows, which doesn't have the usual environment variables for include and link directories.\n\n";
