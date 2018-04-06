@@ -14,7 +14,8 @@ namespace Skeltn {
 		Link,
 		LinkLinux,
 		LinkOSX,
-		LinkWindows
+		LinkWindows,
+		Windows
 	};
 	
 	void loadData(Section s, Project &proj, std::string& line) {
@@ -41,6 +42,19 @@ namespace Skeltn {
 				proj.binaryName = propValue;
 				proj.hasBinaryName = true;
 			}
+		}
+		
+		if(s == Section::Windows) {
+			auto index = line.find_last_of(':');
+			if(index == std::string::npos) return;
+			
+			std::string propName = line.substr(0, index);
+			std::string propValue = line.substr(index + 1);
+			
+			Util::trim(propName);
+			Util::trim(propValue);
+			
+			if(propName == "Subsystem") proj.windowsSubsystem = propValue;
 		}
 		
 		if(s == Section::Link) {
@@ -79,6 +93,7 @@ namespace Skeltn {
 		}
 		
 		proj.fileName = ".skeltn";
+		proj.windowsSubsystem = "CONSOLE";
 		
 		Section currentSection = Section::Unknown;
 		
@@ -97,6 +112,7 @@ namespace Skeltn {
 				if(line == "[Link/Linux]") currentSection = Section::LinkLinux;
 				if(line == "[Link/OSX]") currentSection = Section::LinkOSX;
 				if(line == "[Link/Windows]") currentSection = Section::LinkWindows;
+				if(line == "[Windows]") currentSection = Section::Windows;
 				if(currentSection == Section::Unknown) {
 					Out << YellowText << "warn: " << "Unknown section " << line << "\n" << End;
 				}

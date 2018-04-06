@@ -103,6 +103,8 @@ namespace Skeltn {
 			out << '"' << s << "\".lib ";
 		}
 		
+		out << "/SUBSYSTEM:" << p.windowsSubsystem << " ";
+		
 		out << "/out:" << p.binaryName << ".exe\n\n";
 		
 		for(auto &s : p.files) {

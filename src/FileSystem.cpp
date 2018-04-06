@@ -159,7 +159,7 @@ noHomeDir:
 			0,
 			""
 		};
-   `	return !SHFileOperation(&fileOp);
+    	return !SHFileOperation(&fileOp);
 	}
 #endif
 	

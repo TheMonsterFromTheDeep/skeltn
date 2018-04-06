@@ -72,6 +72,7 @@ namespace Skeltn {
 			}
 			
 			args.push_back("/out:" + proj.binaryName + ".exe");
+			args.push_back("/SUBSYSTEM:" + proj.windowsSubsystem);
 			
 			for(auto &s : proj.link) {
 				args.push_back('"' + s + ".lib\"");

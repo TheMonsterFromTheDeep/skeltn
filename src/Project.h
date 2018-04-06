@@ -25,6 +25,8 @@ namespace Skeltn {
 		std::string binaryName;
 		bool hasBinaryName = false;
 		
+		std::string windowsSubsystem;
+		
 		static Project load();
 	};
 }
