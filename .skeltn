@@ -26,15 +26,7 @@ GCCDep.cpp
 Util.cpp
 Clean.cpp
 MakeGenerator.cpp
-# Put your source file names here
 
-[Library]
-# Put things to link against here
-# If you have platform-specific things to link against, put them under
-# a platform-specific section (i.e. [Library/Windows], [Library/Linux])
-
-# If everything went well you can now run 'skeltn build' and a hello world
-# application will build successfully!
-
-[Library/Windows]
+[Link/Windows]
+# Needed for some FileSystem operations
 Shell32

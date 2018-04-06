@@ -11,10 +11,10 @@ namespace Skeltn {
 		Unknown,
 		Project,
 		Source,
-		Library,
-		LibraryLinux,
-		LibraryOSX,
-		LibraryWindows
+		Link,
+		LinkLinux,
+		LinkOSX,
+		LinkWindows
 	};
 	
 	void loadData(Section s, Project &proj, std::string& line) {
@@ -43,25 +43,25 @@ namespace Skeltn {
 			}
 		}
 		
-		if(s == Section::Library) {
+		if(s == Section::Link) {
 			Util::trim(line);
 			if(line.size() > 0)
 				proj.link.push_back(line);
 		}
 		
-		if(s == Section::LibraryWindows) {
+		if(s == Section::LinkWindows) {
 			Util::trim(line);
 			if(line.size() > 0)
 				proj.linkWindows.push_back(line);
 		}
 		
-		if(s == Section::LibraryOSX) {
+		if(s == Section::LinkOSX) {
 			Util::trim(line);
 			if(line.size() > 0)
 				proj.linkOSX.push_back(line);
 		}
 		
-		if(s == Section::LibraryLinux) {
+		if(s == Section::LinkLinux) {
 			Util::trim(line);
 			if(line.size() > 0)
 				proj.linkLinux.push_back(line);
@@ -93,10 +93,13 @@ namespace Skeltn {
 				currentSection = Section::Unknown;
 				if(line == "[Project]") currentSection = Section::Project;
 				if(line == "[Source]") currentSection = Section::Source;
-				if(line == "[Library]") currentSection = Section::Library;
-				if(line == "[Library/Linux]") currentSection = Section::LibraryLinux;
-				if(line == "[Library/OSX]") currentSection = Section::LibraryOSX;
-				if(line == "[Library/Windows]") currentSection = Section::LibraryWindows;
+				if(line == "[Link]") currentSection = Section::Link;
+				if(line == "[Link/Linux]") currentSection = Section::LinkLinux;
+				if(line == "[Link/OSX]") currentSection = Section::LinkOSX;
+				if(line == "[Link/Windows]") currentSection = Section::LinkWindows;
+				if(currentSection == Section::Unknown) {
+					Out << YellowText << "warn: " << "Unknown section " << line << "\n" << End;
+				}
 				continue;
 			}
 			
