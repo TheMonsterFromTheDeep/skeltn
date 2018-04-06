@@ -84,7 +84,7 @@ namespace Skeltn { namespace CommandLine {
 		pid_t ret;
 		int status;
 		if(pid == -1) {
-			return 0; /* TODO: Return separate value for "failed to invoke" */
+			return 1; /* TODO: Return separate value for "failed to invoke" */
 		}
 		
 		if(pid != 0) {
@@ -96,7 +96,7 @@ namespace Skeltn { namespace CommandLine {
 				int es = WEXITSTATUS(status);
 				return es;
 			}
-			else { return 0; /* See above TODO */ }
+			else { return 1; /* See above TODO */ }
 		}
 		else {
 			int fd = open(redirectionFile, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
@@ -118,7 +118,7 @@ namespace Skeltn { namespace CommandLine {
 			char *command = new char[cmd.size() + 1];
 			strcpy(command, cmd.c_str());
 			
-			execve(command, argv, environ);
+			execvpe(command, argv, environ);
 			exit(127);
 		}
 #endif
