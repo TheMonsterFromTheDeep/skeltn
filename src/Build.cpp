@@ -89,7 +89,6 @@ namespace Skeltn {
 			bool status = true;
 			
 			for(auto d : deps) {
-				std::cerr << "Testing dependency '" << d << "'\n";
 				if(Compile::testDependency(d)) {
 					good.push_back(d);
 				}
