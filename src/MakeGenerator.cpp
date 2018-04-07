@@ -100,7 +100,7 @@ namespace Skeltn {
 		}
 		
 		for(auto &s : p.linkWindows) {
-			out << '"' << s << "\".lib ";
+			out << '"' << s << ".lib\" ";
 		}
 		
 		out << "/SUBSYSTEM:" << p.windowsSubsystem << " ";
@@ -114,7 +114,7 @@ namespace Skeltn {
 			std::replace(fileToEnsure.begin(), fileToEnsure.end(), '/', '\\');
 			
 			out << "\tif not exist " << fileToEnsure << " ( mkdir " << fileToEnsure << " && rmdir " << fileToEnsure << " )\n";
-			out << "\tcl /nologo /c /EHsc " << "src/" << s << " /Fo" << fileToEnsure << "\n\n";
+			out << "\tcl /nologo /c /EHsc /MD " << "src/" << s << " /Fo" << fileToEnsure << "\n\n";
 		}
 		
 		Out << GreenText << "Success\n" << End;

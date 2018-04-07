@@ -126,6 +126,10 @@ namespace Skeltn {
 			proj.objects.push_back("build/" + s + getPlatform().buildExtension());
 		}
 		
+		proj.linkLinux.insert(proj.linkLinux.end(), proj.link.begin(), proj.link.end());
+		proj.linkWindows.insert(proj.linkWindows.end(), proj.link.begin(), proj.link.end());
+		proj.linkOSX.insert(proj.linkOSX.end(), proj.link.begin(), proj.link.end());
+		
 		switch(getOS()) {
 			case OS::Linux:
 				proj.link.insert(proj.link.end(), proj.linkLinux.begin(), proj.linkLinux.end());
@@ -137,10 +141,6 @@ namespace Skeltn {
 				proj.link.insert(proj.link.end(), proj.linkOSX.begin(), proj.linkOSX.end());
 				break;
 		}
-		
-		proj.linkLinux.insert(proj.linkLinux.end(), proj.link.begin(), proj.link.end());
-		proj.linkWindows.insert(proj.linkWindows.end(), proj.link.begin(), proj.link.end());
-		proj.linkOSX.insert(proj.linkOSX.end(), proj.link.begin(), proj.link.end());
 		
 		return proj;
 	}

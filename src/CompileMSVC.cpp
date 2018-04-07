@@ -34,7 +34,6 @@ namespace Skeltn {
 		preprocessArgs.push_back("/P");
 		preprocessArgs.push_back("/showIncludes");
 		
-		
 		compileArgs.push_back("/c");
 		compileArgs.push_back("/EHsc");
 		
@@ -58,6 +57,7 @@ namespace Skeltn {
 			std::vector<std::string> args(compileArgs.begin(), compileArgs.end());
 			args.push_back(source);
 			args.push_back("/Fo\"" + target + '"');
+			args.push_back("/MD");
 			
 			if(CommandLine::execute(compileCommand, args, ".skeltn-log") != 0) return false;
 			return true;
