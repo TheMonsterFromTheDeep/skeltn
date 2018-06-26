@@ -35,7 +35,8 @@ namespace Skeltn { namespace FS {
 #ifdef _WIN32
 		return CreateDirectory(path, NULL);
 #else
-		return !mkdir(path, 755);
+		#define FILE_PERMS 0755 /* this ***MUST*** be octal */
+		return !mkdir(path, FILE_PERMS);
 #endif
 	}
 	
