@@ -30,10 +30,10 @@ Binary: project
 Main.cpp
 Algorithm.cpp
 
-[Library]
+[Link]
 SDL2
 
-[Library/Windows]
+[Link/Windows]
 SDL2main
 ```
 
