@@ -6,20 +6,8 @@
 #include "Commands.h"
 
 namespace Skeltn { namespace Commands {
-	static bool createMainCPP() {
-		std::ofstream out("src/Main.cpp");
-		if(!out.good()) return false;
-		
-		out <<
-		"#include <iostream>\n\n"
-		"int main() {\n"
-		"\tstd::cout << \"Hello, world!\\n\";\n"
-		"}\n";
-		
-		return true;
-	}
-	
-	static bool createSkeltn(const char* projectName, bool hasMainCPP) {
+
+	static bool createSkeltn(const char* projectName) {
 		std::ofstream out(".skeltn");
 		if(!out.good()) return false;
 		
@@ -32,21 +20,16 @@ namespace Skeltn { namespace Commands {
 		"Name: " << projectName << "\n"
 		"Version: 0\n"
 		"SourceDirectory: src\n"
-		"IncludeDirectory: include/$Name\n"
+		"IncludeDirectory: include/" << projectName << "\n"
 		"Binary: " << binName << "\n"
 		"\n"
-		"[Source]\n";
-		if(hasMainCPP) out << "Main.cpp\n";
-		out <<
+		"[Source]\n"
 		"# Put your source file names here\n"
 		"\n"
-		"[Library]\n"
+		"[Link]\n"
 		"# Put things to link against here\n"
 		"# If you have platform-specific things to link against, put them under\n"
-		"# a platform-specific section (i.e. [Library/Windows], [Library/Linux])\n"
-		"\n"
-		"# If everything went well you can now run 'skeltn build' and a hello world\n"
-		"# application will build successfully!\n";
+		"# a platform-specific section (i.e. [Link/Windows], [Link/Linux])\n";
 		
 		return true;
 	}
@@ -54,8 +37,8 @@ namespace Skeltn { namespace Commands {
 	void init(int argc, char **argv) {
 		const char *projectName;
 		if(argc < 1) {
-			projectName = "Untitled Project";
-			Out << YellowText << "No project name specified, using 'Untitled Project'\n" << End;
+			projectName = "Untitled";
+			Out << YellowText << "No project name specified, using 'Untitled'\n" << End;
 		}
 		else {
 			projectName = argv[0];
@@ -65,56 +48,61 @@ namespace Skeltn { namespace Commands {
 		bool hasSourceDir = true;
 		bool isGood = true;
 		
-		Out << "Creating source directory...";
-		if(FS::createDirectory("src")) {
-			Out << GreenText << "Done\n" << End;
+		if(FS::getInfo("src").exists) {
+			Out << GreenText << "Source directory already exists\n" << End;
 		}
 		else {
-			Out << RedText << "Failed\n" << End;
-			hasSourceDir = false;
-			isGood = false;
-		}
-		
-		Out << "Creating base include directory...";
-		if(FS::createDirectory("include")) {
-			Out << GreenText << "Done\n" << End;
-		}
-		else {
-			Out << RedText << "Failed: Skipping project include directory\n" << End;
-			isGood = false;
-			goto noInnerInclude;
-		}
-		
-		Out << "Creating project include directory...";
-		if(FS::createDirectory((std::string("include/") + projectName).c_str())) {
-			Out << GreenText << "Done\n" << End;
-		}
-		else {
-			Out << RedText << "Failed\n" << End;
-			isGood = false;
-		}
-		
-noInnerInclude:
-
-		bool hasMainCPP = false;
-
-		if(hasSourceDir) {
-			Out << "Creating simple 'Main.cpp'...";
-			if(createMainCPP()) {
+			Out << "Creating source directory...";
+			if(FS::createDirectory("src")) {
 				Out << GreenText << "Done\n" << End;
-				hasMainCPP = true;
+			}
+			else {
+				Out << RedText << "Failed\n" << End;
+				hasSourceDir = false;
+				isGood = false;
+			}
+		}
+
+		bool shouldInclude = true;
+		bool shouldProject = true;
+		if(FS::getInfo("include").exists) {
+			shouldInclude = false;
+			Out << GreenText << "Include directory already exists\n" << End;
+			if(FS::getInfo((std::string("include/") + projectName).c_str()).exists) {
+				shouldProject = false;
+				Out << GreenText << "Project include directory already exists\n";
+			}
+		}
+		if(shouldInclude) {
+			Out << "Creating base include directory...";
+			if(FS::createDirectory("include")) {
+				Out << GreenText << "Done\n" << End;
+			}
+			else {
+				Out << RedText << "Failed: Skipping project include directory\n" << End;
+				isGood = false;
+				goto noInnerInclude;
+			}
+		}
+
+		if(shouldProject) {
+			Out << "Creating project include directory...";
+			if(FS::createDirectory((std::string("include/") + projectName).c_str())) {
+				Out << GreenText << "Done\n" << End;
 			}
 			else {
 				Out << RedText << "Failed\n" << End;
 				isGood = false;
 			}
 		}
-		else {
-			Out << YellowText << "Skipping 'Main.cpp' because 'src' could not be created\n" << End;
-		}
+		
+noInnerInclude:
+
+		bool hasMainCPP = false;
+
 		
 		Out << "Creating '.skeltn'...";
-		if(createSkeltn(projectName, hasMainCPP)) {
+		if(createSkeltn(projectName)) {
 			Out << GreenText << "Done\n" << End;
 		}
 		else {
